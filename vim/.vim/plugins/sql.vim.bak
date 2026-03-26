@@ -1,0 +1,68 @@
+" Ruta donde se guardará la configuración (oculto en tu home)
+let s:db_config_file = expand('~/.vim/.db_state')
+
+" --- FUNCIÓN: Cargar configuración guardada ---
+function! s:LoadDBConfig()
+    if filereadable(s:db_config_file)
+        let l:lines = readfile(s:db_config_file)
+        if len(l:lines) >= 2
+            let g:db_perfil = l:lines[0]
+            let g:db_nombre = l:lines[1]
+        endif
+    else
+        " Valores por defecto si no existe el archivo
+        let g:db_perfil = ""
+        let g:db_nombre = ""
+    endif
+endfunction
+
+" --- FUNCIÓN: Guardar configuración en archivo ---
+function! s:SaveDBConfig()
+    let l:data = [g:db_perfil, g:db_nombre]
+    call writefile(l:data, s:db_config_file)
+    echo "Database updated: " . g:db_perfil . " -> " . g:db_nombre
+endfunction
+
+" Cargar al iniciar el plugin
+call s:LoadDBConfig()
+
+" --- FUNCIÓN: Cambiar perfil con guardado automático ---
+function! s:ChangeDB()
+    let l:new_perfil = input("Perfil: ", g:db_perfil)
+    let l:new_base = input("Base: ", g:db_nombre)
+    
+    let g:db_perfil = l:new_perfil
+    let g:db_nombre = l:new_base
+    
+    call s:SaveDBConfig()
+    redraw!
+endfunction
+
+" --- TU FUNCIÓN RunSQL (Mejorada) ---
+function! RunSQL() range
+    let l:sql = join(getline(a:firstline, a:lastline), "\n")
+    if empty(l:sql) | return | endif
+
+    let l:bufname = "__SQL_Result__"
+    let l:cmd = "echo " . shellescape(l:sql) . " | mariadb --defaults-group-suffix=" . g:db_perfil . " " . g:db_nombre . " -t"
+    let l:output = system(l:cmd)
+
+    let l:winid = bufwinnr(l:bufname)
+    if l:winid != -1
+        execute l:winid . "wincmd w"
+        setlocal modifiable
+        silent %delete _
+    else
+        execute "botright 10new " . l:bufname
+        setlocal buftype=nofile bufhidden=wipe noswapfile nowrap ft=sql
+    endif
+
+    call setline(1, split(l:output, "\n"))
+    setlocal nomodifiable
+    wincmd p
+endfunction
+
+" --- MAPEOS ---
+autocmd FileType sql nnoremap <buffer> <leader>db :call <SID>ChangeDB()<CR>
+autocmd FileType sql vnoremap <buffer> <C-p> :call RunSQL()<CR>
+autocmd FileType sql nnoremap <buffer> <C-p> vip:call RunSQL()<CR>

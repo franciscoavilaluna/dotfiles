@@ -1,0 +1,53 @@
+# ---------- UI ----------
+set guioptions none
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+
+# ---------- Colors (dark but readable) ----------
+set recolor false
+set recolor-lightcolor "#000000"
+set recolor-darkcolor  "#FFFFFF"
+
+# Keep math symbols crisp
+set recolor-keephue true
+
+# ---------- Navigation ----------
+set scroll-step 50
+set scroll-page-aware true
+set scroll-full-overlap 0.01
+
+# ---------- Zoom ----------
+set zoom-min 10
+set zoom-max 1000
+set zoom-step 10
+set adjust-open "best-fit"
+
+# ---------- Search ----------
+set incremental-search true
+
+# ---------- Links ----------
+set link-zoom true
+
+# ---------- Vim-style movement ----------
+map j scroll down
+map k scroll up
+map h scroll left
+map l scroll right
+
+map J navigate next
+map K navigate previous
+
+# ---------- Zoom ----------
+map + zoom in
+map - zoom out
+map = zoom original
+
+# ---------- Search ----------
+map / search forward
+map ? search backward
+map n search next
+map N search previous
+
+# ---------- Reload PDF (gold for LaTeX/Pandoc) ----------
+map r reload
+
