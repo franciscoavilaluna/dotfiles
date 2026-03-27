@@ -7,7 +7,7 @@ export DESKTOP_SESSION=dwm
 export GDK_BACKEND=x11
 
 #xrandr --output eDP-1 --brightness 1.0 &
-feh  --bg-scale ~/.config/images/wallpapers/sculpture.jpg &
+feh  --bg-scale ~/.config/images/wallpapers/reinassance.jpg &
 picom --config ~/.config/picom/picom.conf &
 dwmblocks &
 dunst &

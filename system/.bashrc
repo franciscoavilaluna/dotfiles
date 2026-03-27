@@ -1,5 +1,13 @@
 # ~/.bashrc
 
+# --- Retro ThinkPad Prompt ---
+# Definir colores (basados en el esquema que pusimos en Alacritty)
+GREEN="\[\033[0;32m\]"
+CYAN="\[\033[0;36m\]"
+WHITE="\[\033[0;37m\]"
+DIM="\[\033[2m\]"
+RESET="\[\033[0m\]"
+
 [[ $- != *i* ]] && return
 
 export PATH="$HOME/.local/bin:$PATH"
@@ -27,7 +35,8 @@ alias bat-status='cat /sys/class/power_supply/BAT0/status && grep . /sys/class/p
 export EDITOR=nvim
 export VISUAL=nvim
 
-PS1='[\u@\h \W]\$ '
+#PS1='[\u@\h \W]\$ '
+PS1="\[\e[38;5;240m\]\w \[\e[38;5;236m\]† \[\e[0m\]"
 
 thinkbat() {
   local start=$1

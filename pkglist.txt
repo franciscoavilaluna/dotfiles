@@ -4,6 +4,11 @@ android-udev
 base
 base-devel
 brightnessctl
+wireplumber
+pipewire
+pipewire-audio
+pipewire-pulse
+pipewire-alsa
 dunst
 eza
 fastfetch
