@@ -1,0 +1,45 @@
+* {
+  font-family: monospace;
+  font-size: 13px;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  box-shadow: none;
+}
+
+window#waybar {
+  background: #000000;
+  color: #ffffff;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+#workspaces button {
+  all: unset;
+  padding: 0 10px;
+  color: #ffffff;
+  background-color: transparent;
+}
+
+#workspaces button label {
+  color: #666666;
+}
+
+#workspaces button.active {
+  background-color: #ffffff;
+}
+
+#workspaces button.active label {
+  color: #000000;
+}
+
+#workspaces button:hover {
+  background-color: #1a1a1a;
+}
+
+#workspaces button:hover label {
+  color: #ffffff;
+}
+
+#clock, #language, #wireplumber, #battery {
+  padding: 0 6px;
+}
