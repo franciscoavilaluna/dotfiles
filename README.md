@@ -135,4 +135,3 @@ with `Ctrl + Shift + F5`.
 - Arch Linux only (the installer uses `pacman`).
 - Hyprland 0.55 moved from `hyprland.conf` to a Lua config. If an option stops
   working after an update, run `hyprctl configerrors` to see what changed.
-- Do not commit secrets (tokens, SSH keys, passwords) to this repo.
