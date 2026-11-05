@@ -3,7 +3,9 @@ local terminal = "kitty"
 local menu = "fuzzel"
 
 hl.on("hyprland.start", function()
-  hl.dispatch(hl.dsp.exec_cmd("waybar"))
+	for _, cmd in ipairs({ "hyprpaper", "waybar" }) do
+		hl.dispatch(hl.dsp.exec_cmd(cmd))
+	end
 end)
 
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
@@ -13,10 +15,10 @@ hl.config({
 		kb_layout = "us,latam",
 		kb_options = "grp:alt_space_toggle",
 		follow_mouse = 1,
-        touchpad = {
-            natural_scroll = true,
-            tap_to_click = true,
-        },
+		touchpad = {
+			natural_scroll = true,
+			tap_to_click = true,
+		},
 	},
 })
 
