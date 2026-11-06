@@ -2,11 +2,15 @@ local mod = "SUPER"
 local terminal = "kitty"
 local menu = "fuzzel"
 
+
 hl.on("hyprland.start", function()
-	for _, cmd in ipairs({ "hyprpaper", "waybar" }) do
-		hl.dispatch(hl.dsp.exec_cmd(cmd))
-	end
+    for _, cmd in ipairs({ "hyprpaper", "waybar" }) do
+        hl.dispatch(hl.dsp.exec_cmd(cmd))
+    end
 end)
+
+hl.dsp.exec_cmd("wl-paste --type text --watch cliphist store")
+hl.dsp.exec_cmd("wl-paste --type image --watch cliphist store")
 
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 
@@ -15,10 +19,10 @@ hl.config({
 		kb_layout = "us,latam",
 		kb_options = "grp:alt_space_toggle",
 		follow_mouse = 1,
-		touchpad = {
-			natural_scroll = true,
-			tap_to_click = true,
-		},
+        touchpad = {
+            natural_scroll = true,
+            tap_to_click = true,
+        },
 	},
 })
 
@@ -50,6 +54,7 @@ hl.bind(mod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mod .. " + Space", hl.dsp.exec_cmd(menu))
 hl.bind(mod .. " + Q", hl.dsp.window.close())
 hl.bind(mod .. " + SHIFT + Q", hl.dsp.exit())
+hl.bind(mod .. " + V", hl.dsp.exec_cmd("cliphist list | fuzzel --dmenu --with-nth 2 -w 100 -l 15 -p '  ' | cliphist decode | wl-copy"))
 
 hl.bind(mod .. " + H", hl.dsp.focus({ direction = "left" }))
 hl.bind(mod .. " + J", hl.dsp.focus({ direction = "down" }))
