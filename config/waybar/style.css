@@ -40,6 +40,6 @@ window#waybar {
   color: #ffffff;
 }
 
-#clock, #language, #wireplumber, #battery {
+#clock, #language, #backlight, #wireplumber, #battery {
   padding: 0 6px;
 }

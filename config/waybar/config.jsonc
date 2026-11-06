@@ -6,7 +6,7 @@
 
   "modules-left":   ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right":  ["hyprland/language", "wireplumber", "battery"],
+  "modules-right":  ["hyprland/language", "backlight", "wireplumber", "battery"],
 
   "hyprland/workspaces": {
     "format": "{id}"
@@ -21,6 +21,12 @@
     "format": "{short}"
   },
 
+  "backlight": {
+    "format": "bri {percent}%",
+    "on-scroll-up": "brightnessctl set 5%+",
+    "on-scroll-down": "brightnessctl set 5%-"
+  },
+
   "wireplumber": {
     "format": "vol {volume}%",
     "format-muted": "muted",
@@ -32,3 +38,4 @@
     "format-charging": "bat {capacity}%+"
   }
 }
+
