@@ -40,6 +40,6 @@ window#waybar {
   color: #ffffff;
 }
 
-#clock, #language, #network, #backlight, #wireplumber, #battery {
+#clock, #language, #custom-airplane, #custom-wifi, #custom-bluetooth #backlight, #wireplumber, #battery {
   padding: 0 6px;
 }

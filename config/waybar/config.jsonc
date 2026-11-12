@@ -4,9 +4,9 @@
   "height": 24,
   "spacing": 14,
 
-  "modules-left":   ["hyprland/workspaces"],
+  "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right":  ["hyprland/language", "network", "backlight", "wireplumber", "battery"],
+  "modules-right": ["hyprland/language", "custom/airplane", "custom/bluetooth", "custom/wifi", "backlight", "wireplumber", "battery"],
 
   "hyprland/workspaces": {
     "format": "{id}"
@@ -17,36 +17,51 @@
     "tooltip-format": "{:%A %d %B %Y}"
   },
 
-  "network": {
-  "format-wifi": "wifi {signalStrength}%",
-  "format-ethernet": "eth {ipaddr}",
-  "format-disconnected": "offline",
-  "format-linked": "eth (no IP)",
-  "tooltip-format-wifi": "{essid}\n{ipaddr}/{cidr}\n{frequency} GHz\n↓ {bandwidthDownBytes}  ↑ {bandwidthUpBytes}",
-  "tooltip-format-ethernet": "{ifname}\n{ipaddr}/{cidr}",
-  "interval": 5,
-  "on-click": "kitty -e nmtui"
-  },
-
   "hyprland/language": {
     "format": "{short}"
   },
 
+  "custom/airplane": {
+    "exec": "rfkill list | grep -q 'Soft blocked: no' && echo '󰀝 ' || echo '󰀞 '",
+    "interval": 2,
+    "on-click": "rfkill list | grep -q 'Soft blocked: no' && rfkill block all || rfkill unblock all",
+    "tooltip": true,
+    "tooltip-format": "On/Off"
+  },
+
+  "custom/wifi": {
+    "exec": "rfkill list wifi | grep -q 'Soft blocked: no' && echo '󰤨 ' || echo '󰤭 '",
+    "interval": 2,
+    "on-click": "rfkill toggle wifi",
+    "tooltip": true,
+    "tooltip-format": "On/Off"
+  },
+
+  "custom/bluetooth": {
+    "exec": "rfkill list bluetooth | grep -q 'Soft blocked: no' && echo '󰂯 ' || echo '󰂲 '",
+    "interval": 2,
+    "on-click": "rfkill toggle bluetooth",
+    "tooltip": true,
+    "tooltip-format": "On/Off"
+  },
+
   "backlight": {
-    "format": "bri {percent}%",
+    "format": "󰃟 {percent}%",
     "on-scroll-up": "brightnessctl set 5%+",
     "on-scroll-down": "brightnessctl set 5%-"
   },
 
   "wireplumber": {
-    "format": "vol {volume}%",
-    "format-muted": "muted",
+    "format": " {volume}%",
+    "format-muted": " ",
+    "tooltip-format": "Mute/Unmute",
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
   },
 
   "battery": {
-    "format": "bat {capacity}%",
-    "format-charging": "bat {capacity}%+"
+    "format": "󰁹 {capacity}%",
+    "format-charging": "󰂄 {capacity}%+",
+    "on-click": "$HOME/.config/waybar/power-menu.sh"
   }
 }
 
