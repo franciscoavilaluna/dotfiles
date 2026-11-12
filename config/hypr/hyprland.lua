@@ -4,13 +4,15 @@ local menu = "fuzzel"
 
 
 hl.on("hyprland.start", function()
-    for _, cmd in ipairs({ "hyprpaper", "waybar" }) do
+    for _, cmd in ipairs({
+        "hyprpaper",
+        "waybar",
+        "wl-paste --type text --watch cliphist store",
+        "wl-paste --type image --watch cliphist store"
+    }) do
         hl.dispatch(hl.dsp.exec_cmd(cmd))
     end
 end)
-
-hl.dsp.exec_cmd("wl-paste --type text --watch cliphist store")
-hl.dsp.exec_cmd("wl-paste --type image --watch cliphist store")
 
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 
