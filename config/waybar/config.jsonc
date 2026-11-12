@@ -6,7 +6,7 @@
 
   "modules-left":   ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right":  ["hyprland/language", "backlight", "wireplumber", "battery"],
+  "modules-right":  ["hyprland/language", "network", "backlight", "wireplumber", "battery"],
 
   "hyprland/workspaces": {
     "format": "{id}"
@@ -15,6 +15,17 @@
   "clock": {
     "format": "{:%H:%M}",
     "tooltip-format": "{:%A %d %B %Y}"
+  },
+
+  "network": {
+  "format-wifi": "wifi {signalStrength}%",
+  "format-ethernet": "eth {ipaddr}",
+  "format-disconnected": "offline",
+  "format-linked": "eth (no IP)",
+  "tooltip-format-wifi": "{essid}\n{ipaddr}/{cidr}\n{frequency} GHz\n↓ {bandwidthDownBytes}  ↑ {bandwidthUpBytes}",
+  "tooltip-format-ethernet": "{ifname}\n{ipaddr}/{cidr}",
+  "interval": 5,
+  "on-click": "kitty -e nmtui"
   },
 
   "hyprland/language": {
