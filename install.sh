@@ -15,6 +15,8 @@ PACKAGES=(
     waybar
     fuzzel
     grim
+    socat
+    jq
     slurp
     wl-clipboard
     brightnessctl

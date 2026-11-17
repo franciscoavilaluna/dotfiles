@@ -8,7 +8,8 @@ hl.on("hyprland.start", function()
         "hyprpaper",
         "waybar",
         "wl-paste --type text --watch cliphist store",
-        "wl-paste --type image --watch cliphist store"
+        "wl-paste --type image --watch cliphist store",
+        "~/.config/hypr/scripts/monitor-hotplug.sh"
     }) do
         hl.dispatch(hl.dsp.exec_cmd(cmd))
     end
